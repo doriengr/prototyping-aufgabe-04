@@ -4,19 +4,37 @@ import Enemies from "./components/enemies.js";
 let player = new Player();
 let enemies = new Enemies();
 
+let timerDisplay = document.querySelector('.header__time');
+let timer;
+let totalSeconds = 0;
+
+let gameEnd = true;
+let startButton = document.querySelector('.start__button');
+
 init();
+
+function updateTimer() {
+    totalSeconds++;
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    timerDisplay.textContent = padZero(minutes) + ':' + padZero(seconds);
+}
+
+function padZero(num) {
+    return num < 10 ? '0' + num : num;
+}
 
 function checkCollisions() {
     const playerLight = player.light;
     const playerRect = player.element.getBoundingClientRect();
 
     const playerLightPolygon = [
-        [playerLight.getBoundingClientRect().right, playerLight.getBoundingClientRect().top],
-        [playerLight.getBoundingClientRect().right, playerLight.getBoundingClientRect().bottom],
+        [playerLight.getBoundingClientRect().right, playerLight.getBoundingClientRect().top - 6],
+        [playerLight.getBoundingClientRect().right, playerLight.getBoundingClientRect().bottom + 6],
         [playerLight.getBoundingClientRect().left, (playerLight.getBoundingClientRect().top) + (playerLight.getBoundingClientRect().height / 2 )]
     ];
 
-    drawPolygon(playerLightPolygon);
+    // drawPolygon(playerLightPolygon);
 
     enemies.enemies.forEach((enemy) => {
         const enemyRect = enemy.getBoundingClientRect();
@@ -27,13 +45,16 @@ function checkCollisions() {
             ? enemy.classList.remove('enemy--hidden')
             : enemy.classList.add('enemy--hidden');
 
+
         if (
             playerRect.right > enemyRect.left &&
             playerRect.left < enemyRect.right &&
             playerRect.bottom > enemyRect.top &&
             playerRect.top < enemyRect.bottom
-        ) {
-            handleCollision();
+        ){
+            if (playerRect.right >= enemyRect.left && playerRect.right <= enemyRect.right) {
+                handleCollision();
+            }
         }
     });
 }
@@ -72,7 +93,11 @@ function isPointInPolygon(x, y, polygon) {
 }
 
 function handleCollision() {
-    console.log("Collision detected!");
+    enemies.gameStop();
+    player.stop = true;
+    gameEnd = true;
+    clearInterval(timer);
+    new Audio('/assets/drowning.wav').play();
 }
 
 function gameLoop() {
@@ -81,7 +106,12 @@ function gameLoop() {
 }
 
 function init() {
-    player.initPlayer();
-    enemies.initEnemies();
-    gameLoop();
+    startButton.addEventListener('click', function() {
+        let startScreen = document.querySelector('.start');
+        startScreen.classList.remove('start--show');
+        player.initPlayer();
+        enemies.initEnemies();
+        gameLoop();
+        timer = setInterval(updateTimer, 1000);
+    });
 }

@@ -9,12 +9,43 @@
     </head>
     <body>
         <main>
+            <div class="start start--show">
+                <div class="start__overlay"></div>
+                <button class="start__button">
+                    <img src="assets/play.svg" class="start__image">
+                </button>
+            </div>
             <canvas id="polygonCanvas" width="800px" height="800px"></canvas>
+            <div class="header">
+                <p>Zeit: <span class="header__time">00:00</span></p>
+            </div>
             <div class="player">
-                <div class="player__element"></div>
-                <div class="player__light"></div>
+                <div class="player__element">
+                    <svg width="509" height="306" viewBox="0 0 509 306" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M80.6483 287.189H119.648V293.189H80.0745C79.0313 298.782 76.3795 304.902 70.6484 305.189C62.6484 305.589 69.6484 293.355 74.1483 287.189C71.6483 288.022 68.1483 285.389 74.1483 268.189C80.1483 250.989 80.9816 273.689 80.6483 287.189Z" fill="#7F7C7C"/>
+                        <path d="M116.5 305H290V266.5H116.5V305Z" fill="#7F7C7C"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M151.976 155.861C155.026 141.313 160.771 116.911 164 103.5H189.5L197.5 81H306.5L317 100.5H336L352.186 144.644C439.503 148.4 515.553 167.204 507.512 219C493.912 306.6 344.845 311.5 272.012 303C200.179 297.333 46.612 275 7.01203 231C-28.1278 191.956 76.3952 166.56 151.976 155.861Z" fill="#F3B700"/>
+                        <circle cx="189.5" cy="212.5" r="19.5" fill="#7F7C7C"/>
+                        <circle cx="249.5" cy="212.5" r="19.5" fill="#7F7C7C"/>
+                        <circle cx="309.5" cy="212.5" r="19.5" fill="#7F7C7C"/>
+                        <path d="M236.5 22V84.5H265.5V26.5H303.5V0H258.5C240.5 0 236.333 14.6667 236.5 22Z" fill="#7F7C7C"/>
+                    </svg>
+                </div>
+                <div class="player__light">
+                    <svg width="482" height="483" viewBox="0 0 482 483" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M417.335 482.147C458.459 411.133 482 328.665 482 240.699C482 153.042 458.625 70.8446 417.769 0L0 241.199L417.335 482.147Z" fill="url(#paint0_radial_34_14)"/>
+                        <defs>
+                            <radialGradient id="paint0_radial_34_14" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(3.10049e-06 241.199) scale(482 481.853)">
+                                <stop stop-color="#C9CD9C"/>
+                                <stop offset="1" stop-color="#C9CD9C" stop-opacity="0"/>
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                </div>
             </div>
             <div class="enemies-container"></div>
+
+            <div class="seagras"></div>
         </main>
         <script type="module" src="src/js/components/enemies.js"></script>
         <script type="module" src="src/js/components/player.js"></script>

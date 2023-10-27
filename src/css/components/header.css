@@ -1,0 +1,10 @@
+.header {
+    font-family: monospace;
+    font-size: 2rem;
+    color: lightyellow;
+    position: fixed;
+    top: 1rem;
+    left: 2rem;
+    right: 2rem;
+    z-index: 30;
+}

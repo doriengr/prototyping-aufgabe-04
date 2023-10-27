@@ -1,3 +1,10 @@
 body {
-    background-color: #2D3339;
+    background-color: #11282B;
+    background-image: url('/assets/background.svg');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
 }
