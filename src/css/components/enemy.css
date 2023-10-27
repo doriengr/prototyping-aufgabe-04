@@ -1,0 +1,12 @@
+.enemy {
+    width: 1rem;
+    height: 1rem;
+    background-color: red;
+    position: absolute;
+    display: block;
+    opacity: 1;
+}
+
+.enemy.enemy--hidden {
+    opacity: 0;
+}

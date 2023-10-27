@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>HTML 5 Boilerplate</title>
+        <link rel="stylesheet" href="src/css/style.css">
+    </head>
+    <body>
+        <main>
+            <canvas id="polygonCanvas" width="800px" height="800px"></canvas>
+            <div class="player">
+                <div class="player__element"></div>
+                <div class="player__light"></div>
+            </div>
+            <div class="enemies-container"></div>
+        </main>
+        <script type="module" src="src/js/components/enemies.js"></script>
+        <script type="module" src="src/js/components/player.js"></script>
+        <script type="module" src="src/js/site.js"></script>
+    </body>
+</html>
