@@ -4,9 +4,14 @@
     position: absolute;
     display: block;
     opacity: 1;
-    transition: all 300ms ease-in-out;
+    transition: all 100ms ease-in-out;
 }
 
 .enemy.enemy--hidden {
-    opacity: 0.05;
+    opacity: 0.1;
 }
+
+.enemy.enemy--no-opacity.enemy--hidden {
+    opacity: 0;
+}
+

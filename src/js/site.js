@@ -1,8 +1,10 @@
 import Player from './components/player.js';
 import Enemies from "./components/enemies.js";
+import Waves from './components/waves.js';
 
 let player = new Player();
 let enemies = new Enemies();
+let waves = new Waves();
 
 let timerDisplay = document.querySelector('.header__time');
 let timer;
@@ -29,8 +31,8 @@ function checkCollisions() {
     const playerRect = player.element.getBoundingClientRect();
 
     const playerLightPolygon = [
-        [playerLight.getBoundingClientRect().right - 100, playerLight.getBoundingClientRect().top + 10],
-        [playerLight.getBoundingClientRect().right - 100, playerLight.getBoundingClientRect().bottom + 10],
+        [playerLight.getBoundingClientRect().right - 40, playerLight.getBoundingClientRect().top],
+        [playerLight.getBoundingClientRect().right - 40, playerLight.getBoundingClientRect().bottom],
         [playerLight.getBoundingClientRect().left, (playerLight.getBoundingClientRect().top) + (playerLight.getBoundingClientRect().height / 2 )]
     ];
 
@@ -41,11 +43,13 @@ function checkCollisions() {
         const enemyX = (enemyRect.left + enemyRect.right) / 2;
         const enemyY = (enemyRect.top + enemyRect.bottom) / 2;
 
-        isPointInPolygon(enemyX, enemyY, playerLightPolygon)
-            ? enemy.classList.remove('enemy--hidden')
-            : enemy.classList.add('enemy--hidden');
+        if (! player.light.classList.contains('player__light--no')) {
+            isPointInPolygon(enemyX, enemyY, playerLightPolygon)
+                ? enemy.classList.remove('enemy--hidden')
+                : enemy.classList.add('enemy--hidden');
+        }
 
-        const collisionTolerance = 40;
+        const collisionTolerance = 20;
 
         if (
             playerRect.right - collisionTolerance > enemyRect.left &&
@@ -93,6 +97,7 @@ function isPointInPolygon(x, y, polygon) {
 
 function handleCollision() {
     enemies.gameStop();
+    waves.gameStop();
     player.stop = true;
     gameEnd = true;
     clearInterval(timer);
@@ -111,6 +116,15 @@ function init() {
         player.initPlayer();
         enemies.initEnemies();
         gameLoop();
+        waves.init(player, enemies);
         timer = setInterval(updateTimer, 1000);
+        playSound();
     });
+}
+
+function playSound() {
+    const audio = new Audio('/assets/atmo.wav');
+    audio.loop = true;
+    audio.volume = 0.3;
+    audio.play();
 }
