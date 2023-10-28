@@ -3,10 +3,13 @@ export default class Enemies {
         this.enemiesContainer = document.querySelector(".enemies-container");
         this.enemies = [];
         this.stop = false;
+        this.totalSeconds = 0;
+        this.duration = 5000;
     }
 
     initEnemies() {
         setInterval(() => this.createMovingElement(), 500);
+        setInterval(() => this.updateTimer(), 1000);
     }
 
     createMovingElement() {
@@ -15,7 +18,7 @@ export default class Enemies {
         const element = document.createElement("div");
         const image = document.createElement('img');
         image.src = '/assets/fish.svg';
-        element.className = "enemy"; // Add the 'enemy' class
+        element.className = "enemy enemy--hidden";
         element.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
         this.enemiesContainer.appendChild(element);
         element.appendChild(image);
@@ -27,7 +30,7 @@ export default class Enemies {
                 { right: "100%" }
             ],
             {
-                duration: 5000,
+                duration: this.duration,
                 iterations: 1,
             }
         );
@@ -43,5 +46,9 @@ export default class Enemies {
         this.enemies.forEach(enemy => {
             enemy.remove();
         });
+    }
+
+    updateTimer() {
+        this.totalSeconds++;
     }
 }

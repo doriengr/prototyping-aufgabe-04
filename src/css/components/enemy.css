@@ -1,11 +1,12 @@
 .enemy {
-    width: 6rem;
-    height: 6em;
+    width: 100px;
+    height: auto;
     position: absolute;
     display: block;
     opacity: 1;
+    transition: all 300ms ease-in-out;
 }
 
 .enemy.enemy--hidden {
-    // opacity: 0;
+    opacity: 0.05;
 }

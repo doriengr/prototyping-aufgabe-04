@@ -29,8 +29,8 @@ function checkCollisions() {
     const playerRect = player.element.getBoundingClientRect();
 
     const playerLightPolygon = [
-        [playerLight.getBoundingClientRect().right, playerLight.getBoundingClientRect().top - 6],
-        [playerLight.getBoundingClientRect().right, playerLight.getBoundingClientRect().bottom + 6],
+        [playerLight.getBoundingClientRect().right - 100, playerLight.getBoundingClientRect().top + 10],
+        [playerLight.getBoundingClientRect().right - 100, playerLight.getBoundingClientRect().bottom + 10],
         [playerLight.getBoundingClientRect().left, (playerLight.getBoundingClientRect().top) + (playerLight.getBoundingClientRect().height / 2 )]
     ];
 
@@ -45,16 +45,15 @@ function checkCollisions() {
             ? enemy.classList.remove('enemy--hidden')
             : enemy.classList.add('enemy--hidden');
 
+        const collisionTolerance = 40;
 
         if (
-            playerRect.right > enemyRect.left &&
-            playerRect.left < enemyRect.right &&
-            playerRect.bottom > enemyRect.top &&
-            playerRect.top < enemyRect.bottom
+            playerRect.right - collisionTolerance > enemyRect.left &&
+            playerRect.left + collisionTolerance < enemyRect.right &&
+            playerRect.bottom - collisionTolerance > enemyRect.top &&
+            playerRect.top + collisionTolerance < enemyRect.bottom
         ){
-            if (playerRect.right >= enemyRect.left && playerRect.right <= enemyRect.right) {
-                handleCollision();
-            }
+            handleCollision();
         }
     });
 }
