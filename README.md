@@ -6,3 +6,5 @@ Aufgabenstellung: Hauptinteraktion muss mit Scrolling passieren
 - Autor: Dorien Grönwald
 - Werkzeug: JS, CSS, HTML
 - Anmerkung: bitte eher mit Trackpad als mit Maus spielen, da mit Maus nicht getestet werden konnte
+
+Link: https://groenwald-prototyping-04.netlify.app/
