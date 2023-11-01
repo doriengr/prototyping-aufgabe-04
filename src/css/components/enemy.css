@@ -7,8 +7,12 @@
     transition: all 100ms ease-in-out;
 }
 
+.enemy--big {
+    width: 125px;
+}
+
 .enemy.enemy--hidden {
-    opacity: 0.1;
+    opacity: 0.08;
 }
 
 .enemy.enemy--no-opacity.enemy--hidden {

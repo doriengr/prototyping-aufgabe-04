@@ -3,12 +3,12 @@ export default class Enemies {
         this.enemiesContainer = document.querySelector(".enemies-container");
         this.enemies = [];
         this.stop = false;
-        this.duration = 4500;
+        this.duration = 4000;
         this.noOpacity = false;
     }
 
     initEnemies() {
-        setInterval(() => this.createMovingElement(), 500);
+        setInterval(() => this.createMovingElement(), 350);
     }
 
     createMovingElement() {
@@ -16,11 +16,21 @@ export default class Enemies {
 
         const element = document.createElement("div");
         const image = document.createElement('img');
-        image.src = '/assets/fish.svg';
+        const random = Math.random();
 
-        this.noOpacity
-            ? element.className = "enemy enemy--no-opacity enemy--hidden"
-            : element.className = "enemy enemy--hidden";
+        if (random < 0.8) {
+            image.src = '/assets/fish.svg';
+
+            this.noOpacity
+                ? element.className = "enemy enemy--no-opacity enemy--hidden"
+                : element.className = "enemy enemy--hidden";
+        } else {
+            image.src = '/assets/octupus.svg';
+
+            this.noOpacity
+                ? element.className = "enemy enemy--big enemy--no-opacity enemy--hidden"
+                : element.className = "enemy enemy--big enemy--hidden";
+        }
 
         element.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
         this.enemiesContainer.appendChild(element);

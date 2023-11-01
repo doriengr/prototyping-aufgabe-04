@@ -14,7 +14,7 @@ export default class Waves {
     init(player, enemies) {
         this.player = player;
         this.enemies = enemies;
-        this.timer = setInterval(() => this.updateTimer(), 30000);
+        this.timer = setInterval(() => this.updateTimer(), 20000);
     }
 
     updateTimer() {
@@ -38,9 +38,9 @@ export default class Waves {
                 this.changeDurationAllFish(2000);
 
                 setTimeout(() => {
-                    this.enemies.duration = 4500;
+                    this.enemies.duration = 4000;
                     this.timeDisplay.classList.remove('header__time-display--wave');
-                    this.changeDurationAllFish(4500);
+                    this.changeDurationAllFish(4000);
                     this.stopSound();
                 }, duration);
                 break;
